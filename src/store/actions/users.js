@@ -53,7 +53,8 @@ export const logout = () => {
 export const auth = () => {
     return async dispatch => {
         try {
-            const data = await UserService.auth(localStorage.getItem('token') || '')
+            const token = localStorage.getItem('token') || ''
+            const data = await UserService.auth(token)
             dispatch(loginUserSuccess(data))
             localStorage.setItem('token', data.token)
         } catch (error) {
@@ -62,10 +63,11 @@ export const auth = () => {
     }
 }
 
-export const addToFavorite = (user_id, movie) => {
+export const addToFavorite = (movieId) => {
     return async dispatch => {
         try {
-            const data = await UserService.addToFavorite(user_id, movie)
+            const token = localStorage.getItem('token') || ''
+            const data = await UserService.addToFavorite(movieId, token)
             dispatch(addFavoriteMovieSuccess(data))
         } catch (error) {
 
@@ -73,10 +75,11 @@ export const addToFavorite = (user_id, movie) => {
     }
 }
 
-export const addToWatchLater = (user_id, movie) => {
+export const addToWatchLater = (movieId) => {
     return async dispatch => {
         try {
-            const data = await UserService.addToWatchLater(user_id, movie)
+            const token = localStorage.getItem('token') || ''
+            const data = await UserService.addToWatchLater(movieId, token)
             dispatch(addWatchLaterMovieSuccess(data))
         } catch (error) {
 
@@ -84,10 +87,11 @@ export const addToWatchLater = (user_id, movie) => {
     }
 }
 
-export const saveTestResult = (user_id, result) => {
+export const saveTestResult = (result) => {
     return async dispatch => {
         try {
-            const data = await UserService.saveTestResult(user_id, result)
+            const token = localStorage.getItem('token') || ''
+            const data = await UserService.saveTestResult(result, token)
             dispatch(saveTestResultSuccess(data))
         } catch (error) {
 

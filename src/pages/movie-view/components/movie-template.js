@@ -6,8 +6,8 @@ import styles from './movie-template.module.css'
 const MovieTemplate = props => {
     const { movie } = props
 
-    const addToFavorite = () => props.addToFavorite(props.user.id, movie)
-    const addToWatchLater = () => props.addToWatchLater(props.user.id, movie)
+    const addToFavorite = () => props.addToFavorite(movie._id)
+    const addToWatchLater = () => props.addToWatchLater(movie._id)
 
     return (
         <>

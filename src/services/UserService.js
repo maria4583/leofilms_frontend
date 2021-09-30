@@ -9,7 +9,7 @@ class UserService {
     }
 
     static async login(body) {
-        const { data } = await axios.post(BASE_URL+ 'login', body)
+        const { data } = await axios.post(BASE_URL + 'login', body)
         return data
     }
 
@@ -23,18 +23,42 @@ class UserService {
         return data
     }
 
-    static async addToFavorite(user_id, movie) {
-        const { data } = await axios.put(BASE_URL + 'favorite', { user_id, movie })
+    static async addToFavorite(movieId, token) {
+        const { data } = await axios.put(
+            BASE_URL + 'favorite',
+            { movie_id: movieId },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
         return data
     }
 
-    static async addToWatchLater(user_id, movie) {
-        const { data } = await axios.put(BASE_URL + 'watchLater', { user_id, movie })
+    static async addToWatchLater(movieId, token) {
+        const { data } = await axios.put(
+            BASE_URL + 'watchLater',
+            { movie_id: movieId },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
         return data
     }
 
-    static async saveTestResult(user_id, result) {
-        const { data } = await axios.put(BASE_URL + 'testResult', { user_id, testResult: result })
+    static async saveTestResult(result, token) {
+        const { data } = await axios.put(
+            BASE_URL + 'testResult',
+            { test_result: result },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
         return data
     }
 }
